@@ -11,19 +11,24 @@ import Combine
 struct PokedexList: View {
 
     @ObservedObject var viewModel: PokemonListViewModel
+    let spacing: CGFloat = 16
+    let columns: [GridItem]
 
-    let columns = Array(repeating: GridItem(.flexible()), count: 2)
+    init (viewModel: PokemonListViewModel) {
+        columns = Array(repeating: GridItem(spacing: spacing, alignment: nil), count: 2)
+        self.viewModel = viewModel
+    }
 
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: columns, alignment: .center, spacing: 16, pinnedViews: [PinnedScrollableViews.sectionHeaders]) {
-                    ForEach (0..<100) { _ in
+                LazyVGrid(columns: columns, alignment: .center, spacing: spacing, pinnedViews: [PinnedScrollableViews.sectionHeaders]) {
+                    ForEach (0..<100, id: \.self) { _ in
                         PokemonCell(backgroundColor: .red, name: "Charmader", image: "charma", type: "Fire")
                     }
-
                 }
             }
+            .padding(.horizontal, spacing)
             .navigationTitle("Pokedex")
         }
     }

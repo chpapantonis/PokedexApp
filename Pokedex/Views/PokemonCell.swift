@@ -21,10 +21,12 @@ struct PokemonCell: View {
                 .padding(.top, 4)
                 .padding(.trailing)
 
-            HStack {
+            HStack(alignment: .center, spacing:  nil) {
                 Text(type)
                     .font(.subheadline)
                     .bold()
+                    .scaledToFill()
+                    .minimumScaleFactor(0.7)
                     .foregroundColor(.white)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
@@ -32,10 +34,11 @@ struct PokemonCell: View {
                         RoundedRectangle (cornerRadius: 20)
                             .fill(Color.white.opacity(0.2))
                     )
-                    .frame(width: 100, height: 24)
+                    .frame(minWidth:0, idealWidth: 100, maxWidth: .infinity, minHeight: 24, idealHeight: 24, maxHeight: 24, alignment: .center)
 
                 Image(image)
                     .resizable()
+                    .scaledToFit()
                     .frame(width: 80, height: 80)
                     .padding(.bottom, 4)
             }

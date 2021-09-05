@@ -9,8 +9,7 @@ import Foundation
 import Combine
 
 class PokemonListViewModel: ObservableObject {
-    let buttonPublisher: some Publisher = PassthroughSubject<Void,Never>()
-//    private let buttonToken: AnyCancellable
+    let buttonPublisher: some Publisher = PassthroughSubject<[],Never>()
 
     init() {
 
